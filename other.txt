@@ -1,0 +1,8 @@
+sudo apt-get install git maven
+wget http://mirror.sdunix.com/apache/giraph/giraph-1.0.0/giraph-1.0.0.tar.gz
+tar -zxf giraph-1.0.0.tar.gz
+cd giraph-1.0.0
+mvn -Phadoop_cdh4.5.0 -DskipTests clean install
+git clone https://github.com/Sotera/distributed-louvain-modularity.git
+
+zookeeper isn't running for some reason as a service

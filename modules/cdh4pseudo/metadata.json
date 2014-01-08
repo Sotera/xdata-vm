@@ -1,0 +1,35 @@
+{
+  "name": "hans_frederic_fraser-cdh4pseudo",
+  "author": "hans_frederic_fraser",
+  "description": "This module is for Cloudera CDH4 on ubuntu 12.0.4+ platforms.\n\nInstalls Cloudera CDH4:\n * Hadoop Pseudo distributed mode\n * Hbase pseudo distributed mode\n * Zookeeper. \n * Hbase thrift\n * Hbase Rest\n",
+  "license": "MIT",
+  "project_page": "https://github.com/hfraser/puppet-cdh4pseudo",
+  "source": "http://github.com/hfraser/puppet-cdh4pseudo.git",
+  "summary": "Module to install CDH4 Hadoop hbase and zookeeper in psedo distributed mode.",
+  "version": "1.0.0",
+  "checksums": {
+    "Modulefile": "cd65bd3f341f16e3c35d5b6aa4c90b41",
+    "README.md": "a684afee903d6000cb6e028b6a42ef68",
+    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
+    "files/hbase-site.xml": "f789ac5f13ac8a1ea98e02c7214b8cc6",
+    "files/java.accept": "b605cb7ccc4075bacc3c951ac8be3fc9",
+    "files/sudoers.txt": "2463b8590c742a7575d9b3d1ebbb88cf",
+    "manifests/curl.pp": "6a19b2b4d8340258ab1a8166d89d47b7",
+    "manifests/hbase.pp": "22a99982a50847746a9d874db633b4e9",
+    "manifests/init.pp": "f1140949c30f77b22d8e440e15a3510a",
+    "manifests/java.pp": "60af5c9dc57117f253e04d2e1556daf5",
+    "manifests/pseudo.pp": "b99370ee64aa89562225013624e6ca07",
+    "manifests/source.pp": "e50b1910363b80a4b035cbcbb849b08b",
+    "manifests/zookeeper.pp": "fb6135ea1b12a18481a01670522b7ed5",
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "templates/cdh4.list.erb": "1a44025856348875cae52f3130d9d32e",
+    "tests/init.pp": "9cd747d9800556305642ae95bea31b07"
+  },
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": "\u003e\u003d3.2.0"
+    }
+  ]
+}
