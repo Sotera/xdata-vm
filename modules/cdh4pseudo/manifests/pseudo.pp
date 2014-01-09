@@ -37,30 +37,13 @@ class cdh4pseudo::pseudo {
     require => File['hadoop-conf'],
     creates => "/root/configured-hadoop-local"
   }
-  
-  exec {'add-alternative-hadoop-compute':
-    command => 'update-alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/xdata-conf/compute 39  && touch /root/configured-hadoop-compute',
-    require => File['hadoop-conf'],
-    creates => "/root/configured-hadoop-compute"
-  }
-  
-  exec {'add-alternative-hadoop-highmem':
-    command => 'update-alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/xdata-conf/highmem 38 && touch /root/configured-hadoop-highmem',
-    require => File['hadoop-conf'],
-    creates => "/root/configured-hadoop-highmem"
-  }
-  
-  exec {'add-alternative-hadoop-gpu':
-    command => 'update-alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/xdata-conf/gpu 37 && touch /root/configured-hadoop-gpu',
-    require => File['hadoop-conf'],
-    creates => "/root/configured-hadoop-gpu"
-  }
+ 
 
     
   exec { 'format-hdfs-partition':
     unless => 'ls /root/configuredhdfs.lock',
     command => 'sudo -u hdfs hdfs namenode -format',
-    require => [Exec['add-alternative-hadoop-gpu'],Exec['add-alternative-hadoop-highmem'],Exec['add-alternative-hadoop-compute'],Exec['add-alternative-hadoop-local']]
+    require => Exec['add-alternative-hadoop-local']
   }
   
   service {'hadoop-hdfs-datanode': ensure => running, require => Exec['format-hdfs-partition']}

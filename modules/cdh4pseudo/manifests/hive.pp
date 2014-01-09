@@ -91,40 +91,16 @@ class cdh4pseudo::hive {
     require => File['hive-conf'],
     creates => "/root/configured-hive-local"
   }
-  
-  exec {'add-alternative-hive-compute':
-    command => 'update-alternatives --install /etc/hive/conf hive-conf /etc/hive/xdata-conf/compute 39 && touch /root/configured-hive-compute',
-    require => File['hive-conf'],
-    creates => "/root/configured-hive-compute"
-  }
-  
-  exec {'add-alternative-hive-highmem':
-    command => 'update-alternatives --install /etc/hive/conf hive-conf /etc/hive/xdata-conf/highmem 38 && touch /root/configured-hive-highmem',
-    require => File['hive-conf'],
-    creates => "/root/configured-hive-highmem"
-  }
-  
-  exec {'add-alternative-hive-gpu':
-    command => 'update-alternatives --install /etc/hive/conf hive-conf /etc/hive/xdata-conf/gpu 37 && touch /root/configured-hive-gpu',
-    require => File['hive-conf'],
-    creates => "/root/configured-hive-gpu"
-  }
 
   
   service {'hive-metastore': ensure => running, require => [
-  	Exec['add-alternative-hive-gpu'],
-  	Exec['add-alternative-hive-highmem'],
-  	Exec['add-alternative-hive-compute'],
-  	Exec['add-alternative-hive-local']
-  	]
+  	Package['hive-metastore'], Exec['add-alternative-hive-local']
+	]
   }
   
   service {'hive-server': ensure => running, require => [
-  	Exec['add-alternative-hive-gpu'],
-  	Exec['add-alternative-hive-highmem'],
-  	Exec['add-alternative-hive-compute'],
-  	Exec['add-alternative-hive-local']
-  	]
+  	Package['hive-server'], Exec['add-alternative-hive-local']
+	]
   }
   
   
