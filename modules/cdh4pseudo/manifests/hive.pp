@@ -28,7 +28,7 @@ class cdh4pseudo::hive {
   
   package { 'hive-metastore':
     ensure  => installed,
-    require => [Package['hive-server'],Exec['add-alternative-hive-local']]
+    require => Package['hive-server']
   }
   
   # create hive user directories
@@ -83,7 +83,7 @@ class cdh4pseudo::hive {
     replace => true,
     ignore => '.DS_Store',
     ensure => directory,
-    require => Package['hive-server']
+    require => [Package['hive-server'],Package['hive-metastore']]
   }
   
   exec {'add-alternative-hive-local':
@@ -93,14 +93,14 @@ class cdh4pseudo::hive {
   }
 
   
-  service {'hive-metastore': ensure => running, require => [
-  	Package['hive-metastore'], Exec['add-alternative-hive-local']
-	]
+  service {'hive-metastore': ensure => running, require => 
+  	Exec['add-alternative-hive-local']
+	
   }
   
-  service {'hive-server': ensure => running, require => [
-  	Package['hive-server'], Exec['add-alternative-hive-local']
-	]
+  service {'hive-server': ensure => running, require => 
+  	Exec['add-alternative-hive-local']
+	
   }
   
   
