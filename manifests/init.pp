@@ -1,4 +1,3 @@
-
 #sets global path so don't have to specify it every single time.
 Exec {
 	path => [
@@ -10,6 +9,8 @@ Exec {
 		'/sbin'],
 }
 
+# Install common linux tools
+include xdata::tools
 
 # Installs cdh4 mrv1, hive (which install yarn/mrv2, mysql), impala
 # java 6 and 7 (from sun)
@@ -19,7 +20,6 @@ include cdh4pseudo
 #include rhipe  
  
 # Installs basic packages and bashrc files 
-#class {'xdata': }
 
 # install scala, spark and shark.
 #class {'xdata::scala': before => [Class['Xdata::Sbt'], Class['Xdata::spark'], Class['Xdata::shark']] } 
