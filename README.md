@@ -9,3 +9,15 @@ Install
 2. Install Virtual Box: https://www.virtualbox.org/wiki/Downloads
 3. Run this: 'vagrant box add xdata-vm http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box'
 4. Run this: 'vagrant up'
+
+Re-Install
+==========
+1. Run: 'vagrant destroy'
+2. Run: 'vagrant up'
+
+Info
+====
+external static ip: 192.168.56.101
+
+namenode: http://192.168.56.101:50070 <br/>
+jobtracker: http://192.168.56.101:50030 <br/>
