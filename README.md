@@ -15,9 +15,9 @@ Re-Install
 1. Run: 'vagrant destroy'
 2. Run: 'vagrant up'
 
-Info
-====
-external static ip: 192.168.56.101
+Verification
+============
 
-namenode: http://192.168.56.101:50070 <br/>
-jobtracker: http://192.168.56.101:50030 <br/>
+- zookeeper
+  printf "ruok\n" | nc 127.0.0.1 2181 
+  

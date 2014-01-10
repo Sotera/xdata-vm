@@ -11,9 +11,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "xdata-vm"
+  config.vm.hostname = "xdata"
   config.vm.provision :shell, :path => "bootstrap.sh"
+
   config.vm.network :forwarded_port, guest: 50030, host: 50030, auto_correct: true
   config.vm.network :forwarded_port, guest: 50070, host: 50070, auto_correct: true
+  config.vm.network :forwarded_port, guest: 8020, host: 8020, auto_correct: true
+  config.vm.network :forwarded_port, guest: 2181, host: 2181, auto_correct: true
+
   #config.vm.network :forwarded_port, guest: 8888, host: 8888, auto_correct: true
   #config.vm.network :forwarded_port, guest: 8787, host: 8787, auto_correct: true
   #config.vm.network :forwarded_port, guest: 8080, host: 8080, auto_correct: true
@@ -30,7 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network :private_network, ip: "192.168.33.10"
-  config.vm.network :private_network, ip: "192.168.56.101", virtualbox__intnet: true
+  #config.vm.network :private_network, ip: "192.168.56.101", virtualbox__intnet: true
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on

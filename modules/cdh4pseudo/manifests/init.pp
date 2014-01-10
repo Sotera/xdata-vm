@@ -32,10 +32,10 @@ class cdh4pseudo {
   class {'cdh4pseudo::java': require => Exec['cdh_update']}
   class {'cdh4pseudo::pseudo': require => Class['cdh4pseudo::java']}
   class {'cdh4pseudo::impala': require => [Class['cdh4pseudo::source'],Class['cdh4pseudo::hive']] }
-
   
   include cdh4pseudo::source
   include cdh4pseudo::java
   include cdh4pseudo::pseudo
+  include cdh4pseudo::hbase
   include cdh4pseudo::hive
 }
