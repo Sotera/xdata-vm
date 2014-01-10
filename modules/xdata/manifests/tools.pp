@@ -11,4 +11,12 @@ class xdata::tools () {
     ensure => "installed"
   }
 
+  package { "git" :
+    ensure => "installed"
+  }
+
+  package { "maven" :
+    ensure => "installed"
+  }
+
 }
