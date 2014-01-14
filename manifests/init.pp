@@ -27,7 +27,7 @@ include xdata::tools
 
 # Installs cdh4 mrv1, hive (which install yarn/mrv2, mysql), impala
 # java 6 and 7 (from sun)
-#include cdh4pseudo
+include cdh4pseudo
 
 # Installs R, Rhipe well as other packages R packages
 include rhipe  

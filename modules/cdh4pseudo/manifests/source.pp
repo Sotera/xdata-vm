@@ -22,6 +22,14 @@ class cdh4pseudo::source {
     mode    => 644,
     source => "puppet:///modules/cdh4pseudo/cloudera.list"
   }
+
+  file { "hadoop-env":
+    path    => "/etc/profile.d/hadoop_env.sh",
+    owner   => 'root',
+    group   => 'root',
+    mode    => 644,
+    source => "puppet:///modules/cdh4pseudo/hadoop_env.sh"
+  }
   
   exec {'apt-get-update1':
     command => "sudo apt-get update --fix-missing"

@@ -33,7 +33,6 @@ class cdh4pseudo::java {
     require      => File['/tmp/java.accept'],
   }
   
-  
   package { 'oracle-java7-set-default':
     ensure => latest,
     require => Package['oracle-java7-installer']

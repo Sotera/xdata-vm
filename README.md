@@ -15,6 +15,46 @@ Re-Install
 1. Run: `vagrant destroy`
 2. Run: `vagrant up`
 
+
+Validation
+=========
+
+### hadoop
+```
+$ hadoop fs -ls /
+```
+
+### maven
+```
+$ maven --version
+```
+
+### R 
+```
+$ R --version 
+```
+
+### Rhipe 
+```
+$ R
+> library(Rhipe)
+------------------------------------------------
+| Please call rhinit() else RHIPE will not run |
+------------------------------------------------
+> rhinit()
+Rhipe: Using RhipeCDH4.jar
+Initializing Rhipe v0.73
+SLF4J: Class path contains multiple SLF4J bindings.
+....
+> x <- list( list("a", 1), list("b", 2))
+> rhwrite(x,"/tmp/x")
+Wrote 0.48 KB,2 chunks, and 2 elements (100% complete)
+> rhread("/tmp/x")
+Read 2 objects(0.07 KB) in 0.06 seconds
+...
+```
+
+
 Components
 ----------
 - gradle
