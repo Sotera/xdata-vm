@@ -9,8 +9,21 @@ Exec {
 		'/sbin'],
 }
 
+#stages
+stage { 'setup': 
+   before => Stage['main'],
+}
+
+file {"srv-dir":
+   path => "/srv/software",
+   ensure => directory
+}
+
 # Install common linux tools
+class {xdata::tools: stage => setup}
 include xdata::tools
+include xdata::maven
+include xdata::gradle 
 
 # Installs cdh4 mrv1, hive (which install yarn/mrv2, mysql), impala
 # java 6 and 7 (from sun)
@@ -21,10 +34,13 @@ include cdh4pseudo
  
 # Installs basic packages and bashrc files 
 
-# install scala, spark and shark.
-#class {'xdata::scala': before => [Class['Xdata::Sbt'], Class['Xdata::spark'], Class['Xdata::shark']] } 
+# install scala, sbt, spark and shark.
+include xdata::shark
+
+#class {'xdata::scala': require => Class['cdh4pseudo::java'], before => Class['xdata::sbt']}
 #class {'xdata::sbt': }
-#class {'xdata::spark': before =>  Class['Xdata::Shark'] }
+#class {'xdata::sbt': before => [Class['xdata::spark']]}
+#class {'xdata::spark': before =>  Class['xdata::shark'] }
 #class {'xdata::shark': }
 
 

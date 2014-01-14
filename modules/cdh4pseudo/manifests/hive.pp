@@ -2,7 +2,6 @@ class cdh4pseudo::hive {
 
   class { 'mysql::server': config_hash => { 'root_password' => 'root' }}
   class { 'mysql::java': require => Package['hive']}
-
   
   # we ony want to install workbench if gnome is installed however
   # the package type doesn't have an onlyif.  so using a hacky

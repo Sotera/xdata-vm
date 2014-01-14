@@ -11,7 +11,9 @@
 # Sample Usage:
 #     include cdh4pseudo::source
 #
-class cdh4pseudo::source{
+class cdh4pseudo::source {
+
+  class{ 'cdh4pseudo::curl': stage => setup }
   
   file { "cdh4-sourcelist":
     path    => "/etc/apt/sources.list.d/cloudera.list",
@@ -29,11 +31,6 @@ class cdh4pseudo::source{
     command => "sudo apt-get -y install python-software-properties",
 	require => [File['cdh4-sourcelist'], Exec['apt-get-update1']]
   }
-  
-  exec {'add-cdh4-key':
-    command => "sudo curl -s http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh/archive.key | sudo apt-key add -",
-    require => [File['cdh4-sourcelist'], Package['curl']]
-  }
 
   exec {'add-java-repo':
     command => "sudo /usr/bin/add-apt-repository ppa:webupd8team/java",
@@ -44,4 +41,15 @@ class cdh4pseudo::source{
     command => "/usr/bin/apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886",
     require => File['cdh4-sourcelist']
   }
+
+  exec {'add-cdh4-key':
+    command => "sudo curl -s http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh/archive.key | sudo apt-key add -",
+    require => [File['cdh4-sourcelist'], Package['curl'], Exec['add-java-key']]
+  } 
+ 
+  exec {'update-repos-after-keys':
+    command => '/usr/bin/apt-get update',
+    require => Exec['add-cdh4-key']
+  } 
+
 }

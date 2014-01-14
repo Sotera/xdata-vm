@@ -1,5 +1,8 @@
 class cdh4pseudo::impala {
 
+  require cdh4pseudo::source
+  require cdh4pseudo::hive
+
   #add the impala repo to the system and add the key
   file { "impala-sourcelist":
     path    => "/etc/apt/sources.list.d/cloudera-impala.list",
@@ -18,14 +21,17 @@ class cdh4pseudo::impala {
       command => 'apt-get update',
       require => Exec['add-impala-key'],
       before => Package['impala-state-store']
-      
   }
-  
 
-  package {'impala-state-store': ensure => installed, require => [Exec['add-impala-key'], Exec['apt-get-update']]}
-  package {'impala-server' : ensure => installed, require => [Exec['add-impala-key'], Exec['apt-get-update']]}
+  package {'impala-state-store': 
+       ensure => installed, 
+       require => [Exec['add-impala-key'], Exec['apt-get-update']]
+  }
+  package {'impala-server' : 
+       ensure => installed, 
+       require => [Exec['add-impala-key'], Exec['apt-get-update']]
+  }
   package {'impala-shell' : ensure => installed, require => Package['impala-server']}
-  
   
   file { "impala-conf":
     path    => "/etc/impala/conf.dist",

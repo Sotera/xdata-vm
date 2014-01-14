@@ -12,6 +12,8 @@
 #     include cdh4pseudo::zookeeper
 #
 class cdh4pseudo::zookeeper {
+  require cdh4pseudo::java
+
   package { 'zookeeper-server':
     ensure => latest
   }

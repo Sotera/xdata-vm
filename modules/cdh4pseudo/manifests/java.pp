@@ -12,14 +12,14 @@
 #     include cdh4pseudo::java
 #
 class cdh4pseudo::java {
+  class { 'cdh4pseudo::source': stage => setup }
+
   # seeding taken from https://github.com/abhishektiwari/java7/blob/master/manifests/init.pp
   file { "/tmp/java.accept":
     ensure => present,
     source => 'puppet:///modules/cdh4pseudo/java.accept',
     mode   => '0600',
   }
-  
-  	
   
   package { "oracle-java7-installer":
     ensure       => installed,

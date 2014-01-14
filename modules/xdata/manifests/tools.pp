@@ -1,5 +1,5 @@
 #
-#  standard linux tools
+#  standard tools
 #
 class xdata::tools () {
 
@@ -15,7 +15,7 @@ class xdata::tools () {
     ensure => "installed"
   }
 
-  package { "maven" :
+  package { "unzip" :
     ensure => "installed"
   }
 

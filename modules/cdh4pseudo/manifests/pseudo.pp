@@ -12,7 +12,8 @@
 #     include cdh4pseudo::pseudo
 #
 class cdh4pseudo::pseudo {
-  
+  require cdh4pseudo::java
+
   package { 'hadoop-0.20-conf-pseudo':
     ensure  => present
   }
