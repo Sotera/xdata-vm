@@ -15,6 +15,10 @@ class xdata::tools () {
     ensure => "installed"
   }
 
+  package { "pkg-config" :
+    ensure => "installed"
+  }
+
   package { "unzip" :
     ensure => "installed"
   }

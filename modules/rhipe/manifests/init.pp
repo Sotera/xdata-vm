@@ -1,6 +1,5 @@
 class rhipe {
-  include r
-  #include rJava
+  require r
   
   package {'libprotobuf-dev':
     ensure  => installed,
@@ -16,7 +15,7 @@ class rhipe {
   # Directions taken from
   # http://kb.solarvps.com/ubuntu/how-to-install-scala-2-9-3-on-ubuntu-12-04-lts/
   ##
-  wget::fetch { "rhipe-app-download":
+  wget::fetch { "${app}-app-download":
     source      => $url,
     destination => $download_destination,
     verbose     => false,
@@ -27,7 +26,6 @@ class rhipe {
     ensure  => installed,
     require => Package['libprotobuf-dev'],
     notify  => Exec["reconf-rjava"],
-
   }
   
   exec {'reconf-rjava':
@@ -35,12 +33,11 @@ class rhipe {
     notify      => Exec['install-rhipe'],
     refreshonly => true,
     require     => Package['r-cran-rjava'],
-    
   }
   
   exec {"install-rhipe" :
     cwd         => "/tmp",
-    command     => "R CMD INSTALL ${app}_${version}.tar.gz",
+    command     => "sudo R CMD INSTALL ${app}_${version}.tar.gz",
     require     => Exec['reconf-rjava'],
     refreshonly => true,
   }

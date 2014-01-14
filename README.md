@@ -17,12 +17,6 @@ Re-Install
 
 Components
 ----------
-- tools
-  - git
-  - lynx
-  - netcat
-  - unzip
-
 - gradle
 - maven
 
@@ -34,7 +28,13 @@ Components
   - java
   - zookeeper
 
-- scala
-- sbt
-- spark
-- shark
+- xdata
+  - scala
+  - sbt
+  - spark
+  - shark
+  - tools
+    - git
+    - lynx
+    - netcat
+    - unzip
