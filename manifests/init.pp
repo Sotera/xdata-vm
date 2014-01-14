@@ -22,8 +22,8 @@ file {"srv-dir":
 # Install common linux tools
 class {xdata::tools: stage => setup}
 include xdata::tools
-#include xdata::maven
-#include xdata::gradle 
+include xdata::maven
+include xdata::gradle 
 
 # Installs cdh4 mrv1, hive (which install yarn/mrv2, mysql), impala
 # java 6 and 7 (from sun)
@@ -35,7 +35,7 @@ include rhipe
 # Installs basic packages and bashrc files 
 
 # install scala, sbt, spark and shark.
-#include xdata::shark
+include xdata::shark
 
 # Downloads geoserver and unzips to /opt directory.
 #class {'xdata::geoserver': require => Class['xdata']}
