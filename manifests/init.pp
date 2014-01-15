@@ -30,11 +30,15 @@ include xdata::gradle
 include cdh4pseudo
 
 # Installs R, Rhipe well as other packages R packages
+include r
 include rhipe  
  
 # Installs basic packages and bashrc files 
 
 # install scala, sbt, spark and shark.
+include xdata::scala
+include xdata::sbt
+include xdata::spark
 include xdata::shark
 
 # Downloads geoserver and unzips to /opt directory.

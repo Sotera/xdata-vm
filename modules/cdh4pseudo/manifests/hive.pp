@@ -94,16 +94,10 @@ class cdh4pseudo::hive {
   
   service {'hive-metastore': ensure => running, require => 
   	Exec['add-alternative-hive-local']
-	
   }
   
   service {'hive-server': ensure => running, require => 
   	Exec['add-alternative-hive-local']
-	
   }
-  
-  
-  
-  
 
 }
