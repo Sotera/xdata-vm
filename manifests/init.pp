@@ -39,7 +39,9 @@ include rhipe
 include xdata::scala
 include xdata::sbt
 include xdata::spark
-include xdata::shark
+
+#shark is not compatible
+#include xdata::shark
 
 # Downloads geoserver and unzips to /opt directory.
 #class {'xdata::geoserver': require => Class['xdata']}

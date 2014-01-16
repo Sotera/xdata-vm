@@ -4,8 +4,8 @@ class xdata::shark {
   require xdata::spark
   
   $app = "shark"
-  $version = "0.7.0"
-  $url = "http://spark-project.org/download/${app}-${version}-hadoop2-bin.tgz"
+  $version = "0.8.0"
+  $url = "http://spark-project.org/download/${app}-${version}-bin-cdh4.tgz"
   $download_destination = "/tmp/${app}.tgz"
   $install_dir = "/srv/software"
    
@@ -36,9 +36,9 @@ class xdata::shark {
   } 
 
   exec { "mv-${app}-hive-folder":
-    creates     => "${install_dir}/hive-0.9.0-bin",
+    creates     => "${install_dir}/hive-0.9.0-shark-0.8.0-bin",
     cwd         => "/tmp",
-    command	=> "mv hive-0.9.0-bin ${install_dir}/",
+    command	=> "mv hive-0.9.0-shark-0.8.0-bin ${install_dir}/",
     require     => Exec["deflate-${app}"],
     refreshonly => true,
   } 

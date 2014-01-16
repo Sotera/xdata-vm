@@ -28,7 +28,7 @@ export SHARK_MASTER_MEM=1g
 export SCALA_HOME="/usr/share/scala"
 
 # (Required) Point to the patched Hive binary distribution
-export HIVE_HOME="$SHARK_HOME/../hive-0.9.0-bin"
+export HIVE_HOME="/srv/software/hive-0.9.0-shark-0.8.0-bin"
 
 # (Optional) Specify the location of Hive's configuration directory.
 # By default,
