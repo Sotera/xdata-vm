@@ -1,10 +1,8 @@
 # xdata-vm
-**********
 
 Vagrant-Ubuntu VM Serving as the baseline for performer software integration
 
 ## Install
--------
 * Install Vagrant: http://www.vagrantup.com/
 * Install Virtual Box: https://www.virtualbox.org/wiki/Downloads
 * Run this: `vagrant box add xdata-vm http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box`
@@ -13,12 +11,10 @@ Vagrant-Ubuntu VM Serving as the baseline for performer software integration
 * Run this: `vagrant up`
 
 ## Re-Install
-----------
 * Run: `vagrant destroy`
 * Run: `vagrant up`
 
 ## Vagrant Commands
-----------------
 After installing Vagrant, VirtualBox, and possibly editing your
 Vagrantfile, you are ready to start the VM.  Below are the commands
 you can type in the terminal while in the current directory.
@@ -47,22 +43,18 @@ you can type in the terminal while in the current directory.
 More information can be found by typing **vagrant -help** or viewing the documentation [online](http://docs.vagrantup.com/v2/cli/index.html)
 
 ## Components
-******
 - gradle
 - maven
-
 - curl
 - hbase
 - hive
 - impala
 - java
 - zookeeper
-
 - scala
 - sbt
 - spark
 - shark
-
 - git
 - lynx
 - netcat
