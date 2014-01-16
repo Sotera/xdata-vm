@@ -62,7 +62,7 @@
 
 <property>
   <name>javax.jdo.option.ConnectionPassword</name>
-  <value>bigdata</value>
+  <value>root</value>
 </property>
 
 <property>
@@ -77,7 +77,7 @@
 
 <property>
   <name>hive.metastore.uris</name>
-  <value>thrift://localhost:8093</value>
+  <value>thrift://localhost:10000</value>
   <description>IP address (or fully-qualified domain name) and port of the metastore host</description>
 </property>
 
