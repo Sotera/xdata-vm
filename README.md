@@ -3,16 +3,25 @@
 Vagrant-Ubuntu VM Serving as the baseline for performer software integration
 
 ## Install
-* Install Vagrant: http://www.vagrantup.com/
-* Install Virtual Box: https://www.virtualbox.org/wiki/Downloads
-* Run this: `vagrant box add xdata-vm http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box`
-* Download this repository: `git clone https://github.com/Sotera/xdata-vm.git xdata-vm` 
-* Change directory: `cd xdata-vm`
-* Run this: `vagrant up`
+  * Install Vagrant: [http://www.vagrantup.com](http://www.vagrantup.com)
+  * Install Virtual Box: [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)
+  * Download the ubuntu vagrant box 
+
+  ```bash
+  $ vagrant box add xdata-vm \ 
+  http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box
+  $ git clone https://github.com/Sotera/xdata-vm.git xdata-vm
+  $ cd xdata-vm/
+  $ vagrant up
+  ```
 
 ## Re-Install
-* Run: `vagrant destroy`
-* Run: `vagrant up`
+**All changes and data will be lost**
+
+```bash
+$ vagrant destroy
+$ vagrant up
+```
 
 ## Vagrant Commands
 After installing Vagrant, VirtualBox, and possibly editing your
