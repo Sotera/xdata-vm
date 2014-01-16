@@ -39,7 +39,6 @@ class cdh4pseudo::pseudo {
     creates => "/root/configured-hadoop-local"
   }
  
-
     
   exec { 'format-hdfs-partition':
     unless => 'ls /root/configuredhdfs.lock',
@@ -73,25 +72,22 @@ class cdh4pseudo::pseudo {
     unless => 'sudo -u hdfs hadoop fs -ls /var/lib/hadoop-hdfs',
     command => 'sudo -u hdfs hadoop fs -mkdir -p /var/lib/hadoop-hdfs/cache/mapred/mapred/staging',
     require => Exec['chmod-hdfs-root']
-  
   }
   
   exec { 'chmod-hadoop-mapred-staging':
     unless => 'ls /root/configuredhdfs.lock',
     command => 'sudo -u hdfs hadoop fs -chmod 1777 /var/lib/hadoop-hdfs/cache/mapred/mapred/staging',
-  	require => Exec['mkdir-hadoop-mapred-staging']
+    require => Exec['mkdir-hadoop-mapred-staging']
   }
   
   exec { 'chown-hadoop-mapred-staging':
     unless => 'ls /root/configuredhdfs.lock',
     command => 'sudo -u hdfs hadoop fs -chown -R mapred /var/lib/hadoop-hdfs/cache/mapred',
-  	require => Exec['chmod-hadoop-mapred-staging']
+    require => Exec['chmod-hadoop-mapred-staging']
   }
   
   service {'hadoop-0.20-mapreduce-jobtracker': ensure => running, require => Exec['chown-hadoop-mapred-staging'] }  
   service {'hadoop-0.20-mapreduce-tasktracker': ensure => running, require => Service['hadoop-0.20-mapreduce-jobtracker'] }
-  
-  
   
   
   ##################################
@@ -112,7 +108,15 @@ class cdh4pseudo::pseudo {
     require => Exec['bigdata-hdfs-dir']
   } 
   
-
+  exec { 'vagrant-hdfs-dir':
+    unless  => 'sudo -u hdfs hadoop fs -ls /user/vagrant',
+    command => 'sudo -u hdfs hadoop fs -mkdir /user/vagrant',
+    require => Service['hadoop-0.20-mapreduce-tasktracker']
+  }
   
+  exec { 'chown-vagrant-hdfs':
+    command => 'sudo -u hdfs hadoop fs -chown vagrant /user/vagrant',
+    require => Exec['bigdata-hdfs-dir']
+  } 
   
 }
