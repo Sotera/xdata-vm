@@ -1,6 +1,5 @@
 
 # Validation
-------
 
 Consolidated instructions to validate components are installed 
 
@@ -28,6 +27,7 @@ Java home: /usr/lib/jvm/java-7-oracle/jre
 Default locale: en_US, platform encoding: UTF-8
 OS name: "linux", version: "3.2.0-58-generic", arch: "amd64", family: "unix"
 ```
+[top](#validation)
 
 ### Gradle
 ```
@@ -45,7 +45,7 @@ Ivy:          2.2.0
 JVM:          1.7.0_45 (Oracle Corporation 24.45-b08)
 OS:           Linux 3.2.0-58-generic amd64
 ```
-
+[top](#validation)
 
 ### Hadoop
 ```
@@ -56,6 +56,7 @@ drwxrwxrwt   - hdfs  supergroup          0 2014-01-14 22:49 /tmp
 drwxr-xr-x   - hdfs  supergroup          0 2014-01-14 22:50 /user
 drwxr-xr-x   - hdfs  supergroup          0 2014-01-14 22:49 /var
 ```
+[top](#validation)
 
 ### Hbase 
 ```
@@ -74,6 +75,7 @@ TABLE
 test
 1 row(s) in 0.9480 seconds
 ```
+[top](#validation)
 
 ### Hive
 ```
@@ -96,6 +98,7 @@ OK
 Time taken: 1.699 seconds
 hive>
 ```
+[top](#validation)
 
 ### R 
 ```
@@ -111,6 +114,7 @@ GNU General Public License version 2.
 For more information about these matters see
 http://www.gnu.org/licenses/.
 ```
+[top](#validation)
 
 ### Rhipe 
 ```
@@ -131,6 +135,7 @@ Wrote 0.48 KB,2 chunks, and 2 elements (100% complete)
 Read 2 objects(0.07 KB) in 0.06 seconds
 ...
 ```
+[top](#validation)
 
 ### Scala
 ```
@@ -142,6 +147,7 @@ Type :help for more information.
 scala> Range(1,8).map(2*).toList
 res0: List[Int] = List(2, 4, 6, 8, 10, 12, 14)
 ```
+[top](#validation)
 
 ### Sbt
 ```
@@ -149,6 +155,7 @@ $ sbt --version
 Loading /usr/share/sbt/bin/sbt-launch-lib.bash
 sbt launcher version 0.13.0
 ```
+[top](#validation)
 
 ### Spark
 ```
@@ -171,9 +178,11 @@ res1: Long = 100
 scala> file.filter( _.toInt >= 50).count
 res1: Long = 50
 ```
+[top](#validation)
 
 ### Shark
 
 ```
 todo
 ```
+[top](#validation)
