@@ -48,25 +48,22 @@ More information can be found by typing **vagrant -help** or viewing the documen
 
 ## Components
 ******
-
 - gradle
 - maven
 
-- cdh4 
-  - curl
-  - hbase
-  - hive
-  - impala
-  - java
-  - zookeeper
+- curl
+- hbase
+- hive
+- impala
+- java
+- zookeeper
 
-- xdata
-  - scala
-  - sbt
-  - spark
-  - shark
-  - tools
-    - git
-    - lynx
-    - netcat
-    - unzip
+- scala
+- sbt
+- spark
+- shark
+
+- git
+- lynx
+- netcat
+- unzip

@@ -33,7 +33,15 @@ class xdata::shark {
     command	=> "mv ${app}-${version} ${install_dir}/",
     require     => Exec["deflate-${app}"],
     refreshonly => true,
-  }
+  } 
+
+  exec { "mv-${app}-hive-folder":
+    creates     => "${install_dir}/hive-0.9.0-bin",
+    cwd         => "/tmp",
+    command	=> "mv hive-0.9.0-bin ${install_dir}/",
+    require     => Exec["deflate-${app}"],
+    refreshonly => true,
+  } 
    
   file {"${install_dir}/${app}":
     ensure => link,
