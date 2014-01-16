@@ -27,10 +27,17 @@ class cdh4pseudo::impala {
        ensure => installed, 
        require => [Exec['add-impala-key'], Exec['apt-get-update']]
   }
+
+  package {'impala-catalog' : 
+       ensure => installed, 
+       require => [Exec['add-impala-key'], Exec['apt-get-update']]
+  }
+
   package {'impala-server' : 
        ensure => installed, 
        require => [Exec['add-impala-key'], Exec['apt-get-update']]
   }
+
   package {'impala-shell' : ensure => installed, require => Package['impala-server']}
   
   file { "impala-conf":
@@ -42,8 +49,22 @@ class cdh4pseudo::impala {
     recurse => true,
     replace => false,
     ensure => directory,
-    require => [Package['impala-state-store'],Package['impala-server'],Package['impala-shell']]
-    
+    require => [Package['impala-state-store'],Package['impala-server'],Package['impala-catalog'],Package['impala-shell']]
+  }
+
+  service { 'impala-state-store':
+    ensure => running,
+    subscribe => File["impala-conf"]
+  }
+
+  service { 'impala-catalog':
+    ensure => running,
+    subscribe => File["impala-conf"]
+  }
+
+  service { 'impala-server':
+    ensure => running,
+    require => [Service["impala-state-store"],Service["impala-catalog"]]
   }
   
 }

@@ -39,8 +39,8 @@ class cdh4pseudo::java {
   }
   
   file { 'sudoers-javahome':
-    path    => '/etc/sudoers',
-    source  => "puppet:///modules/cdh4pseudo/sudoers",
+    path    => '/etc/sudoers.d/javahome',
+    source  => "puppet:///modules/cdh4pseudo/sudoers-javahome",
     ensure  => file,
     owner   => 'root',
     group   => 'root',

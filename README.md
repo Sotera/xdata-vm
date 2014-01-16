@@ -3,10 +3,9 @@
 Vagrant-Ubuntu VM Serving as the baseline for performer software integration
 
 ## Install
-  * Install Vagrant: [http://www.vagrantup.com](http://www.vagrantup.com)
-  * Install Virtual Box: [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)
-  * Download the ubuntu vagrant box 
-
+  Install Vagrant: [http://www.vagrantup.com](http://www.vagrantup.com)<br/>
+  Install Virtual Box: [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)<br/>
+  Download the ubuntu vagrant box<br/>
   ```bash
   $ vagrant box add xdata-vm \ 
   http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box
@@ -63,7 +62,7 @@ More information can be found by typing **vagrant -help** or viewing the documen
 - scala
 - sbt
 - spark
-- -shark-
+- ~~shark~~
 - git
 - lynx
 - netcat

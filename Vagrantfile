@@ -40,7 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  # config.vm.network :public_network
+  #config.vm.network :public_network
 
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
@@ -90,6 +90,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # # }
   #
   config.vm.provision :puppet do |puppet|
+    puppet.options="--verbose --debug"    
     puppet.module_path="modules"
     puppet.manifests_path = "manifests"
     puppet.manifest_file  = "init.pp"
