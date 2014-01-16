@@ -63,7 +63,7 @@ More information can be found by typing **vagrant -help** or viewing the documen
 - scala
 - sbt
 - spark
-- shark
+- -shark-
 - git
 - lynx
 - netcat

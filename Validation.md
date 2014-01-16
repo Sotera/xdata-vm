@@ -13,7 +13,7 @@ Consolidated instructions to validate components are installed
 - [Scala](#scala)
 - [Sbt](#sbt)
 - [Spark](#spark)
-- [Shark](#shark)
+- [Shark](#shark) (TODO - not compatiable with hive 0.10)
 
 *************
 
@@ -182,7 +182,12 @@ res1: Long = 50
 
 ### Shark
 
-```
-todo
+**TODO currently shark is not compatible with HIVE 0.10 metastore **
+
+https://groups.google.com/forum/#!topic/spark-users/BpTXKEsKcHo 
+
+```bash
+$ /srv/software/shark/bin/shark
+
 ```
 [top](#validation)
