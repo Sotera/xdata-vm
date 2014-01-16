@@ -1,10 +1,26 @@
 
 # Validation
+------
+
+Consolidated instructions to validate components are installed 
+
+- [Maven](#maven)
+- [Gradle](#gradle)
+- [Hadoop](#hadoop)
+- [Hbase](#hbase)
+- [Hive](#hive)
+- [R](#r)
+- [Rhipe](#rhipe) 
+- [Scala](#scala)
+- [Sbt](#sbt)
+- [Spark](#spark)
+- [Shark](#shark)
+
 *************
 
-### maven
+### Maven
 ```
-$ maven --version
+$ mvnn --version
 Apache Maven 3.1.1 (0728685237757ffbf44136acec0402957f723d9a; 2013-09-17 15:22:22+0000)
 Maven home: /usr/share/maven
 Java version: 1.7.0_45, vendor: Oracle Corporation
@@ -13,7 +29,7 @@ Default locale: en_US, platform encoding: UTF-8
 OS name: "linux", version: "3.2.0-58-generic", arch: "amd64", family: "unix"
 ```
 
-### gradle
+### Gradle
 ```
 ------------------------------------------------------------
 Gradle 1.10
@@ -31,7 +47,7 @@ OS:           Linux 3.2.0-58-generic amd64
 ```
 
 
-### hadoop
+### Hadoop
 ```
 $ hadoop fs -ls /
 Found 4 items
@@ -41,7 +57,7 @@ drwxr-xr-x   - hdfs  supergroup          0 2014-01-14 22:50 /user
 drwxr-xr-x   - hdfs  supergroup          0 2014-01-14 22:49 /var
 ```
 
-### hbase 
+### Hbase 
 ```
 $ hbase shell
 14/01/15 14:10:01 WARN conf.Configuration: hadoop.native.lib is deprecated. Instead, use io.native.lib.available
@@ -59,7 +75,7 @@ test
 1 row(s) in 0.9480 seconds
 ```
 
-### hive
+### Hive
 ```
 $ hive
 Logging initialized using configuration in file:/etc/hive/xdata-conf/local/hive-log4j.properties
@@ -116,7 +132,7 @@ Read 2 objects(0.07 KB) in 0.06 seconds
 ...
 ```
 
-### scala
+### Scala
 ```
 $ scala
 Welcome to Scala version 2.9.3 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_45).
@@ -127,14 +143,14 @@ scala> Range(1,8).map(2*).toList
 res0: List[Int] = List(2, 4, 6, 8, 10, 12, 14)
 ```
 
-### sbt
+### Sbt
 ```
 $ sbt --version
 Loading /usr/share/sbt/bin/sbt-launch-lib.bash
 sbt launcher version 0.13.0
 ```
 
-### spark
+### Spark
 ```
 $ /srv/software/spark/spark-shell
 Welcome to
@@ -156,4 +172,8 @@ scala> file.filter( _.toInt >= 50).count
 res1: Long = 50
 ```
 
-### shark
+### Shark
+
+```
+todo
+```
