@@ -20,7 +20,7 @@
 class cdh4pseudo {
  
   include cdh4pseudo::pseudo
-  #include cdh4pseudo::hbase
-  #include cdh4pseudo::hive
-  #include cdh4pseudo::impala
+  include cdh4pseudo::hbase
+  include cdh4pseudo::hive
+  include cdh4pseudo::impala
 }

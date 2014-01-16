@@ -22,23 +22,23 @@ file {"srv-dir":
 # Install common linux tools
 class {xdata::tools: stage => setup}
 include xdata::tools
-#include xdata::maven
-#include xdata::gradle 
+include xdata::maven
+include xdata::gradle 
 
 # Installs cdh4 mrv1, hive (which install yarn/mrv2, mysql), impala
 # java 6 and 7 (from sun)
 include cdh4pseudo
 
 # Installs R, Rhipe well as other packages R packages
-#include r
-#include rhipe  
+include r
+include rhipe  
  
 # Installs basic packages and bashrc files 
 
 # install scala, sbt, spark and shark.
-#include xdata::scala
-#include xdata::sbt
-#include xdata::spark
+include xdata::scala
+include xdata::sbt
+include xdata::spark
 
 #shark is not compatible
 #include xdata::shark
