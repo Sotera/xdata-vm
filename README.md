@@ -51,19 +51,27 @@ you can type in the terminal while in the current directory.
 More information can be found by typing **vagrant -help** or viewing the documentation [online](http://docs.vagrantup.com/v2/cli/index.html)
 
 ## Components
-- gradle
-- maven
-- curl
-- hbase
-- hive
-- impala
-- java
-- zookeeper
-- scala
-- sbt
-- spark
-- ~~shark~~
-- git
-- lynx
-- netcat
-- unzip
+
+gradle
+maven
+git
+curl
+lynx
+netcat
+unzip
+java
+
+hadoop
+hbase
+hive
+
+zookeeper
+impala
+
+scala
+sbt
+spark
+~~shark~~
+
+r
+rhipe
