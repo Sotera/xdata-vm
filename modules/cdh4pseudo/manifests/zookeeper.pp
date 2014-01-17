@@ -26,7 +26,7 @@ class cdh4pseudo::zookeeper {
   
   service { "zookeeper-server":
     ensure     => running,
-    enabled    => true,
+    enable    => true,
     require    => Exec["zookeeper-init"],
     hasrestart => true,
     hasstatus  => true,
