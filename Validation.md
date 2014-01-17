@@ -8,6 +8,7 @@ Consolidated instructions to validate components are installed
 - [Hadoop](#hadoop)
 - [Hbase](#hbase)
 - [Hive](#hive)
+- [Impala](#impala)
 - [R](#r)
 - [Rhipe](#rhipe) 
 - [Scala](#scala)
@@ -97,6 +98,203 @@ hive> DROP TABLE test;
 OK
 Time taken: 1.699 seconds
 hive>
+```
+[top](#validation)
+
+### Impala
+
+following instructions from [cloudera impala tutorial](http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_tutorial.html)
+
+```
+$ {  
+printf "1,true,123.123,2012-10-24 08:55:00 
+2,false,1243.5,2012-10-25 13:40:00
+3,false,24453.325,2008-08-22 09:33:21.123
+4,false,243423.325,2007-05-12 22:32:21.33454
+5,true,243.325,1953-04-22 09:11:33" 
+} > tab1.csv
+$ {
+printf "1,true,12789.123
+2,false,1243.5
+3,false,24453.325
+4,false,2423.3254
+5,true,243.325
+60,false,243565423.325
+70,true,243.325
+80,false,243423.325
+90,true,243.325"
+} > tab2.csv
+$ hadoop fs -mkdir /tmp/impala_test/tab1
+$ hadoop fs -mkdir /tmp/impala_test/tab2
+$ hadoop fs -put tab1.csv /tmp/impala_test/tab1/tab1.csv
+$ hadoop fs -put tab2.csv /tmp/impala_test/tab2/tab2.csv
+$ hadoop fs -lsr /tmp/
+lsr: DEPRECATED: Please use 'ls -R' instead.
+drwxr-xr-x   - bigdata supergroup          0 2014-01-17 15:54 /tmp/impala_test
+drwxr-xr-x   - bigdata supergroup          0 2014-01-17 16:10 /tmp/impala_test/tab1
+-rw-r--r--   1 bigdata supergroup        191 2014-01-17 15:54 /tmp/impala_test/tab1/tab1.csv
+drwxr-xr-x   - bigdata supergroup          0 2014-01-17 16:09 /tmp/impala_test/tab2
+-rw-r--r--   1 bigdata supergroup        157 2014-01-17 16:09 /tmp/impala_test/tab2/tab2.csv
+$ impala-shell
+Starting Impala Shell without Kerberos authentication
+Connected to xdata:21000
+Server version: impalad version 1.2.3 RELEASE (build 1cab04cdb88968a963a8ad6121a2e72a3a623eca)
+Welcome to the Impala shell. Press TAB twice to see a list of available commands.
+
+Copyright (c) 2012 Cloudera, Inc. All rights reserved.
+
+(Shell build version: Impala Shell v1.2.3 (1cab04c) built on Fri Dec 20 19:39:39 PST 2013)
+[xdata:21000] > DROP TABLE IF EXISTS tab1;
+Query: drop TABLE IF EXISTS tab1
+[xdata:21000] > CREATE EXTERNAL TABLE tab1
+              > (
+              >    id INT,
+              >    col_1 BOOLEAN,
+              >    col_2 DOUBLE,
+              >    col_3 TIMESTAMP
+              > );
+Query: create EXTERNAL TABLE tab1 ( id INT, col_1 BOOLEAN, col_2 DOUBLE, col_3 TIMESTAMP )
+
+Returned 0 row(s) in 3.88s
+[xdata:21000] > CREATE EXTERNAL TABLE tab1
+              > (
+              >    id INT,
+              >    col_1 BOOLEAN,
+              >    col_2 DOUBLE,
+              >    col_3 TIMESTAMP
+              > )
+              > ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+              > LOCATION '/tmp/impala_test/tab1';
+Query: create EXTERNAL TABLE tab1 ( id INT, col_1 BOOLEAN, col_2 DOUBLE, col_3 TIMESTAMP ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LOCATION '/tmp/impala_test/tab1'
+
+Returned 0 row(s) in 2.48s
+[xdata:21000] > DROP TABLE IF EXISTS tab2;
+Query: drop TABLE IF EXISTS tab2
+[xdata:21000] > CREATE EXTERNAL TABLE tab2
+              > (
+              >    id INT,
+              >    col_1 BOOLEAN,
+              >    col_2 DOUBLE
+              > )
+              > ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+              > LOCATION '/tmp/impala_test/tab2';
+Query: create EXTERNAL TABLE tab2 ( id INT, col_1 BOOLEAN, col_2 DOUBLE ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LOCATION '/tmp/impala_test/tab2'
+
+Returned 0 row(s) in 2.14s
+[xdata:21000] > select * from tab1;
+Query: select * from tab1
++----+-------+------------+-------------------------------+
+| id | col_1 | col_2      | col_3                         |
++----+-------+------------+-------------------------------+
+| 1  | true  | 123.123    | 2012-10-24 08:55:00           |
+| 2  | false | 1243.5     | 2012-10-25 13:40:00           |
+| 3  | false | 24453.325  | 2008-08-22 09:33:21.123000000 |
+| 4  | false | 243423.325 | 2007-05-12 22:32:21.334540000 |
+| 5  | true  | 243.325    | 1953-04-22 09:11:33           |
++----+-------+------------+-------------------------------+
+Returned 5 row(s) in 0.22s
+[xdata:21000] > select * from tab2;
+Query: select * from tab2
++----+-------+---------------+
+| id | col_1 | col_2         |
++----+-------+---------------+
+| 1  | true  | 12789.123     |
+| 2  | false | 1243.5        |
+| 3  | false | 24453.325     |
+| 4  | false | 2423.3254     |
+| 5  | true  | 243.325       |
+| 60 | false | 243565423.325 |
+| 70 | true  | 243.325       |
+| 80 | false | 243423.325    |
+| 90 | true  | 243.325       |
++----+-------+---------------+
+Returned 9 row(s) in 0.24s
+[xdata:21000] > DROP TABLE IF EXISTS tab3;
+Query: drop TABLE IF EXISTS tab3
+[xdata:21000] > CREATE TABLE tab3
+              > (
+              >    id INT,
+              >    col_1 BOOLEAN,
+              >    col_2 DOUBLE,
+              >    month INT,
+              >    day INT
+              > )
+              > ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+Query: create TABLE tab3 ( id INT, col_1 BOOLEAN, col_2 DOUBLE, month INT, day INT ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+
+Returned 0 row(s) in 2.12s
+[xdata:21000] > show databases;
+Query: show databases
++---------+
+| name    |
++---------+
+| default |
++---------+
+Returned 1 row(s) in 0.12s
+[xdata:21000] > use default;
+Query: use default
+[xdata:21000] > show tables;
+Query: show tables
++------+
+| name |
++------+
+| tab1 |
+| tab2 |
+| tab3 |
++------+
+Returned 3 row(s) in 0.12s
+[xdata:21000] > describe tab1;
+Query: describe tab1
++-------+-----------+---------+
+| name  | type      | comment |
++-------+-----------+---------+
+| id    | int       |         |
+| col_1 | boolean   |         |
+| col_2 | double    |         |
+| col_3 | timestamp |         |
++-------+-----------+---------+
+Returned 4 row(s) in 0.14s
+[xdata:21000] > SELECT tab1.col_1, MAX(tab2.col_2), MIN(tab2.col_2)
+              > FROM tab2 JOIN tab1 USING (id)
+              > GROUP BY col_1 ORDER BY 1 LIMIT 5;
+Query: select tab1.col_1, MAX(tab2.col_2), MIN(tab2.col_2) FROM tab2 JOIN tab1 USING (id) GROUP BY col_1 ORDER BY 1 LIMIT 5
++-------+-----------------+-----------------+
+| col_1 | max(tab2.col_2) | min(tab2.col_2) |
++-------+-----------------+-----------------+
+| false | 24453.325       | 1243.5          |
+| true  | 12789.123       | 243.325         |
++-------+-----------------+-----------------+
+Returned 2 row(s) in 0.50s
+[xdata:21000] > SELECT tab2.*
+              > FROM tab2,
+              > (SELECT tab1.col_1, MAX(tab2.col_2) AS max_col2
+              >  FROM tab2, tab1
+              >  WHERE tab1.id = tab2.id
+              >  GROUP BY col_1) subquery1
+              > WHERE subquery1.max_col2 = tab2.col_2;
+Query: select tab2.* FROM tab2, (SELECT tab1.col_1, MAX(tab2.col_2) AS max_col2 FROM tab2, tab1 WHERE tab1.id = tab2.id GROUP BY col_1) subquery1 WHERE subquery1.max_col2 = tab2.col_2
++----+-------+-----------+
+| id | col_1 | col_2     |
++----+-------+-----------+
+| 1  | true  | 12789.123 |
+| 3  | false | 24453.325 |
++----+-------+-----------+
+Returned 2 row(s) in 0.59s
+[xdata:21000] > INSERT OVERWRITE TABLE tab3
+              > SELECT id, col_1, col_2, MONTH(col_3), DAYOFMONTH(col_3)
+              > FROM tab1 WHERE YEAR(col_3) = 2012;
+Query: insert OVERWRITE TABLE tab3 SELECT id, col_1, col_2, MONTH(col_3), DAYOFMONTH(col_3) FROM tab1 WHERE YEAR(col_3) = 2012
+Inserted 2 rows in 1.29s
+[xdata:21000] > SELECT * FROM tab3;
+Query: select * FROM tab3
++----+-------+---------+-------+-----+
+| id | col_1 | col_2   | month | day |
++----+-------+---------+-------+-----+
+| 1  | true  | 123.123 | 10    | 24  |
+| 2  | false | 1243.5  | 10    | 25  |
++----+-------+---------+-------+-----+
+Returned 2 row(s) in 0.26s
+[xdata:21000] >
 ```
 [top](#validation)
 
