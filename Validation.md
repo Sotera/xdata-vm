@@ -105,7 +105,10 @@ hive>
 
 following instructions from [cloudera impala tutorial](http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_tutorial.html)
 
-```
+
+Create sample data and add it to hdfs
+
+```bash
 $ {  
 printf "1,true,123.123,2012-10-24 08:55:00 
 2,false,1243.5,2012-10-25 13:40:00
@@ -135,6 +138,11 @@ drwxr-xr-x   - bigdata supergroup          0 2014-01-17 16:10 /tmp/impala_test/t
 -rw-r--r--   1 bigdata supergroup        191 2014-01-17 15:54 /tmp/impala_test/tab1/tab1.csv
 drwxr-xr-x   - bigdata supergroup          0 2014-01-17 16:09 /tmp/impala_test/tab2
 -rw-r--r--   1 bigdata supergroup        157 2014-01-17 16:09 /tmp/impala_test/tab2/tab2.csv
+```
+
+Run the impala shell
+
+```
 $ impala-shell
 Starting Impala Shell without Kerberos authentication
 Connected to xdata:21000

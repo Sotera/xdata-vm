@@ -77,7 +77,7 @@
 
 <property>
   <name>hive.metastore.uris</name>
-  <value>thrift://localhost:10000</value>
+  <value>thrift://localhost:9083</value>
   <description>IP address (or fully-qualified domain name) and port of the metastore host</description>
 </property>
 

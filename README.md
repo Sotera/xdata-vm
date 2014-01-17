@@ -52,26 +52,25 @@ More information can be found by typing **vagrant -help** or viewing the documen
 
 ## Components
 
-gradle
-maven
-git
-curl
-lynx
-netcat
-unzip
-java
+  gradle
+  maven
+  git
+  curl
+  lynx
+  netcat
+  unzip
+  java
 
-hadoop
-hbase
-hive
+  hadoop
+  hbase
+  hive
+  zookeeper
+  impala
 
-zookeeper
-impala
+  scala
+  sbt
+  spark
+  ~~shark~~
 
-scala
-sbt
-spark
-~~shark~~
-
-r
-rhipe
+  r
+  rhipe
