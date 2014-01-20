@@ -2,7 +2,7 @@
 
 Vagrant-Ubuntu VM Serving as the baseline for performer software integration
 
-See [wiki](https://github.com/xdata/xdata-vm/wiki) for more information
+See [wiki](https://github.com/Sotera/xdata-vm/wiki) for more information
 
 ## Install
   Install Vagrant: [http://www.vagrantup.com](http://www.vagrantup.com)<br/>
