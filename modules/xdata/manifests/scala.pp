@@ -4,7 +4,7 @@ class xdata::scala {
 
   $app = "scala"
   $version = "2.9.3"
-  $url = "http://www.scala-lang.org/files/archive/${app}-${version}.tgz"
+  $url = "http://www.scala-lang.org/downloads/distrib/files//${app}-${version}.tgz"
   $download_destination = "/tmp/${app}-${version}.tgz"
   $install_dir = "/usr/share/scala"
   
