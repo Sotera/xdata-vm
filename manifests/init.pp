@@ -41,8 +41,8 @@ include xdata::scala
 include xdata::sbt
 include xdata::spark
 
-#shark is not compatible
-include xdata::shark
+#shark is not compatible and needs to be updated to reflect download name changes
+#include xdata::shark
 
 # install sotera components
 

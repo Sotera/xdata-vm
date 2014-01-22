@@ -1,11 +1,11 @@
 class xdata::shark {
-  
+
   require xdata::scala
   require xdata::spark
   
   $app = "shark"
   $version = "0.8.0"
-  $url = "http://spark-project.org/download/${app}-${version}-bin-cdh4.tgz"
+  $url = "https://github.com/amplab/shark/releases/download/v${version}/${app}-${version}-bin-cdh4.tgz"
   $download_destination = "/tmp/${app}.tgz"
   $install_dir = "/srv/software"
    

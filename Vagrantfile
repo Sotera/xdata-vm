@@ -12,8 +12,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "xdata-vm"
   config.vm.hostname = "xdata"
+
   config.vm.provision :shell, :path => "bootstrap.sh"
 
+  #port forwarding
   config.vm.network :forwarded_port, guest: 50030, host: 50030, auto_correct: true
   config.vm.network :forwarded_port, guest: 50070, host: 50070, auto_correct: true
   config.vm.network :forwarded_port, guest: 8020, host: 8020, auto_correct: true
