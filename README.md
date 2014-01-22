@@ -4,10 +4,10 @@ Vagrant-Ubuntu VM Serving as the baseline for performer software integration
 
 See [wiki](https://github.com/Sotera/xdata-vm/wiki) for more information
 
-## Quick Install
+## Quick Start
   Install Vagrant: [http://www.vagrantup.com](http://www.vagrantup.com)<br/>
   Install Virtual Box: [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)<br/>
-  Download the ubuntu vagrant box<br/>
+ 
   ```bash
   $ vagrant box add xdata-vm \ 
   http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box
