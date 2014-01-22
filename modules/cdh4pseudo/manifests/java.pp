@@ -27,11 +27,11 @@ class cdh4pseudo::java {
     require      => File['/tmp/java.accept'],
   }
   
-  package { "oracle-java6-installer":
-    ensure       => installed,
-    responsefile => '/tmp/java.accept',
-    require      => File['/tmp/java.accept'],
-  }
+  # package { "oracle-java6-installer":
+  #   ensure       => installed,
+  #   responsefile => '/tmp/java.accept',
+  #   require      => File['/tmp/java.accept'],
+  # }
   
   package { 'oracle-java7-set-default':
     ensure => latest,
