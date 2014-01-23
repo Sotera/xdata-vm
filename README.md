@@ -11,8 +11,8 @@ See [wiki](https://github.com/Sotera/xdata-vm/wiki) for more information
 
   ```bash
   $ vagrant box add xdata-vm-[version] xdata-vm-[version].box 
-  $ mkdir -p xdata-vm/location/
-  $ cd xdata-vm/location/
+  $ mkdir -p ~/vm/xdata-vm/version/
+  $ cd ~/vm/xdata-vm/version/
   $ vagrant init xdata-vm-[version]
   $ vagrant up
   ```
