@@ -1,6 +1,7 @@
 # XData VM
 
-Vagrant-Ubuntu VM Serving as the baseline for performer software integration
+<img src="https://raw.github.com/wiki/Sotera/xdata-vm/images/vagrant-screenshot2.png" align="right" width="425" />
+Vagrant-Ubuntu VM Serving as the baseline for <br />performer software integration
 
 See [wiki](https://github.com/Sotera/xdata-vm/wiki) for more information
 
