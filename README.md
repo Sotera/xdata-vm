@@ -3,7 +3,7 @@
 <img src="https://raw.github.com/wiki/Sotera/xdata-vm/images/vagrant-screenshot2.png" align="right" width="300" />
 Vagrant-Ubuntu VM Serving as the baseline for performer software integration
 
-See [wiki](https://github.com/Sotera/xdata-vm/wiki) for more information
+See the [wiki](https://github.com/Sotera/xdata-vm/wiki) for more information
 
 
 
