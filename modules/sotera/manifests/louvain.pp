@@ -2,7 +2,7 @@ class sotera::louvain {
 
   $app = "distributed-louvain-modularity"
   $version = "1.0.0"
-  $download_destination = "/tmp/${app}.zip"
+  $download_destination = "/tmp/${app}.tar.gz"
   $install_dir = "/srv/software"
   $url = "https://github.com/Sotera/distributed-louvain-modularity/releases/download/v1.0_chd4.5.0_giraph1.0.0/distributed-louvain-modularity-cdh4.5.0-giraph1.0.0-bin.tar.gz"
 
