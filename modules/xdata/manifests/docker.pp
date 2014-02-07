@@ -14,6 +14,7 @@ class xdata::docker {
   exec { 'docker-ubuntu':
     unless => 'sudo docker images | tr "\\n" ", " | grep ubuntu',
     command => 'sudo docker pull -t latest ubuntu',
+    require => Package['lxc-docker']
   }
 
 }
