@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "xdata-vm"
   config.vm.hostname = "xdata"
 
-  config.vm.provision :shell, :path => "bootstrap.sh"
+  #config.vm.provision :shell, :path => "bootstrap.sh"
 
   #port forwarding
   config.vm.network :forwarded_port, guest: 50030, host: 50030, auto_correct: true
@@ -92,7 +92,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # # }
   #
   config.vm.provision :puppet do |puppet|
-    puppet.options="--verbose --debug"    
     puppet.module_path="modules"
     puppet.manifests_path = "manifests"
     puppet.manifest_file  = "init.pp"

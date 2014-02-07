@@ -10,17 +10,32 @@ Exec {
 }
 
 #stages
-stage { 'setup': 
-   before => Stage['main'],
+stage { 'init': before => Stage['setup'] }
+stage { 'setup':  before => Stage['main'] }
+
+class init-boot () {
+
+    exec { 'init-apt-upgrade':
+      command  => 'sudo apt-get upgrade'  
+    }
+
+    exec { 'init-apt-update':
+      command  => "sudo apt-get update",
+      require  => Exec['init-apt-upgrade']   
+    }
+
+    file { "srv-dir":
+      path => "/srv/software",
+      mode => "0755",
+      ensure => directory
+    }
 }
 
-file {"srv-dir":
-   path => "/srv/software",
-   ensure => directory
-}
+# assign stages 
+class { init-boot: stage => init }
+class { xdata::user: stage => setup }
+class { xdata::tools: stage => setup}
 
-# Install common linux tools
-class {xdata::tools: stage => setup}
 include xdata::tools
 include xdata::maven
 include xdata::gradle 

@@ -13,9 +13,9 @@
 # now start bootstrapping and upgrading your system packages
 sudo apt-get -y upgrade
 sudo apt-get -y update
-sudo useradd -m -s /bin/bash bigdata
-printf '%s\n%s\n' 'bigdata' 'bigdata' | sudo passwd bigdata
-sudo usermod -aG sudo bigdata
+#sudo useradd -m -s /bin/bash bigdata
+#printf '%s\n%s\n' 'bigdata' 'bigdata' | sudo passwd bigdata
+#sudo usermod -aG sudo bigdata
 
 #sudo git clone git://github.com/Kitware/tangelo.git
 #sudo mkdir tangelo-build
