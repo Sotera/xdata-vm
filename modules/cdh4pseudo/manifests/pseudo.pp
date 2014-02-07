@@ -41,7 +41,7 @@ class cdh4pseudo::pseudo {
  
     
   exec { 'format-hdfs-partition':
-    unless => 'ls /root/configuredhdfs.lock',
+    unless => 'sudo ls /root/configuredhdfs.lock',
     command => 'sudo -u hdfs hdfs namenode -format',
     require => Exec['add-alternative-hadoop-local']
   }
@@ -51,7 +51,7 @@ class cdh4pseudo::pseudo {
   service {'hadoop-hdfs-secondarynamenode': ensure => running, require => Exec['format-hdfs-partition']}
   
   exec { 'chmod-hdfs-root':
-    unless => 'ls /root/configuredhdfs.lock',
+    unless => 'sudo ls /root/configuredhdfs.lock',
     command => 'sudo -u hdfs hadoop fs -chmod 777 /',
     require => [Service['hadoop-hdfs-datanode'],Service['hadoop-hdfs-namenode'],Service['hadoop-hdfs-secondarynamenode']]
   }
@@ -63,7 +63,7 @@ class cdh4pseudo::pseudo {
   }
   
   exec { 'chmod-hdfs-tmp':
-    unless => 'ls /root/configuredhdfs.lock',
+    unless => 'sudo ls /root/configuredhdfs.lock',
     command => 'sudo -u hdfs hadoop fs -chmod -R 1777 /tmp',
     require => Exec['mkdir-hdfs-tmp']
   }
@@ -75,14 +75,14 @@ class cdh4pseudo::pseudo {
   }
   
   exec { 'chmod-hadoop-mapred-staging':
-    unless => 'ls /root/configuredhdfs.lock',
+    unless => 'sudo ls /root/configuredhdfs.lock',
     command => 'sudo -u hdfs hadoop fs -chmod 1777 /var/lib/hadoop-hdfs/cache/mapred/mapred/staging',
     require => Exec['mkdir-hadoop-mapred-staging']
   }
   
   exec { 'chown-hadoop-mapred-staging':
-    unless => 'ls /root/configuredhdfs.lock',
-    command => 'sudo -u hdfs hadoop fs -chown -R mapred /var/lib/hadoop-hdfs/cache/mapred',
+    unless => 'sudo ls /root/configuredhdfs.lock',
+    command => 'sudo -u hdfs hadoop fs -chown -R mapred /var/lib/hadoop-hdfs/cache/mapred; sudo touch /root/configuredhdfs.lock',
     require => Exec['chmod-hadoop-mapred-staging']
   }
   
