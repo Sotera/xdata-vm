@@ -14,9 +14,19 @@
 class cdh4pseudo::source {
 
   class{ 'cdh4pseudo::curl': stage => setup }
+
+  file { "java-sourcelist":
+    path    => "/etc/apt/sources.list.d/java.list",
+    ensure => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => 644,
+    source => "puppet:///modules/cdh4pseudo/java.list"
+  }
   
   file { "cdh4-sourcelist":
     path    => "/etc/apt/sources.list.d/cloudera.list",
+    ensure => file,
     owner   => 'root',
     group   => 'root',
     mode    => 644,
@@ -25,6 +35,7 @@ class cdh4pseudo::source {
 
   file { "hadoop-env":
     path    => "/etc/profile.d/hadoop_env.sh",
+    ensure => file,
     owner   => 'root',
     group   => 'root',
     mode    => 644,
@@ -34,20 +45,16 @@ class cdh4pseudo::source {
   exec {'apt-get-update1':
     command => "sudo apt-get update --fix-missing"
   }
-  
-  exec {'add-python-software-properties':
-    command => "sudo apt-get -y install python-software-properties",
-	require => [File['cdh4-sourcelist'], Exec['apt-get-update1']]
-  }
 
-  exec {'add-java-repo':
-    command => "sudo /usr/bin/add-apt-repository ppa:webupd8team/java",
-	require => Exec['add-python-software-properties']
+  package { 'python-software-properties':
+    ensure => installed,
+    require => [File['cdh4-sourcelist'], Exec['apt-get-update1']]
   }
   
   exec {'add-java-key':
+    unless => 'sudo apt-key list | tr "\\n" "," | grep EEA14886',
     command => "/usr/bin/apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886",
-    require => File['cdh4-sourcelist']
+    require => [File['java-sourcelist'], File['cdh4-sourcelist']]
   }
 
   exec {'add-cdh4-key':

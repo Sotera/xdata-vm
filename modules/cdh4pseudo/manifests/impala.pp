@@ -6,6 +6,7 @@ class cdh4pseudo::impala {
   #add the impala repo to the system and add the key
   file { "impala-sourcelist":
     path    => "/etc/apt/sources.list.d/cloudera-impala.list",
+    ensure  => file,
     owner   => 'root',
     group   => 'root',
     mode    => 644,
