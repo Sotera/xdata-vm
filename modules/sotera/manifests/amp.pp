@@ -6,6 +6,7 @@ class sotera::amp {
   $url = "https://github.com/Sotera/aggregate-micro-paths.git"
 
   exec { "git-clone-${app}":
+     unless      => 'sudo ls /srv/software/aggregate-micro-paths',
      cwd         => "/tmp",
      command     => "git clone ${url}",
      user        => 'bigdata',
