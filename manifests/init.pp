@@ -16,7 +16,7 @@ stage { 'setup':  before => Stage['main'] }
 class init-boot () {
 
     exec { 'init-apt-upgrade':
-      command  => 'sudo apt-get upgrade'  
+      command  => 'sudo apt-get -y upgrade'  
     }
 
     exec { 'init-apt-update':
@@ -40,6 +40,7 @@ include xdata::tools
 include xdata::maven
 include xdata::gradle 
 include xdata::python-extras
+include xdata::docker
 
 # Installs cdh4 mrv1, hive (which install yarn/mrv2, mysql), impala java 6 and 7 (from sun)
 
