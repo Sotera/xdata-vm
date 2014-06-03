@@ -15,14 +15,14 @@ stage { 'setup':  before => Stage['main'] }
 
 class init-boot () {
 
-    exec { 'init-apt-upgrade':
-      command  => 'sudo apt-get -y upgrade'  
-    }
-
-    exec { 'init-apt-update':
-      command  => "sudo apt-get update",
-      require  => Exec['init-apt-upgrade']   
-    }
+	exec { 'init-apt-update':
+		command => 'sudo apt-get update'
+	}
+	
+	exec { 'init-apt-upgrade': 
+		command => "sudo apt-get -y upgrade",
+		require => Exec['init-apt-update']
+	}
 
     file { "srv-dir":
       path => "/srv/software",
@@ -64,6 +64,7 @@ include xdata::spark
 
 include sotera::louvain
 include sotera::amp
+include sotera::corr-approx
 
 # Downloads geoserver and unzips to /opt directory.
 #class {'xdata::geoserver': require => Class['xdata']}
