@@ -65,6 +65,7 @@ include xdata::spark
 include sotera::louvain
 include sotera::amp
 include sotera::corr-approx
+include sotera::track-communities
 
 # Downloads geoserver and unzips to /opt directory.
 #class {'xdata::geoserver': require => Class['xdata']}
